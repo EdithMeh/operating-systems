@@ -22,6 +22,14 @@ void listar() {
 	}
 }
 
+void cambiarDirectorio(char *folderDestinoPtr) {
+    char buffer[50];
+	// cambiar de directorio
+	printf("Cambiar directorio a: %s\n", folderDestinoPtr);
+	chdir(folderDestinoPtr);
+}
+
+
 int main()
 {
     char command[100]; 
@@ -29,28 +37,34 @@ int main()
     {
         // Iniciamos en el directorio de trabajo
         char buffer[500];
+        // get current work directory
         getcwd(buffer, sizeof(buffer));
         // mostramos la ruta donde esta ubicado
         printf("Directorio actual de trabajo: \n%s\n", buffer);
 
-        // equicalente a scanf()
-        fgets(command, 100, stdin);
+        /* 
+            equivalente a scanf()
+            stdin Entrada estándar
+        */
+        fgets(command, sizeof(command), stdin);
+        command[strlen(command) - 1] = '\0';
 
         /*
         strtok es una funcion parecida al split
-        pero guarda esto en "tokens" y ahy que trabajarlo con punteros
+        pero guarda esto en "tokens" y ahi hay que trabajarlo con punteros
         */
-        char * token = strtok(command, " ");
+        char *token = strtok(command, " ");
         printf("%s\n", token);
-        if (strcmp(token, "listar\n") == 0) {
+        if (strcmp(token, "listar") == 0) {
             printf("%s\n", "listando...");
             listar();
         }
-        else if (strcmp(token, "cd\n") == 0) {
+        else if (strcmp(token, "cd") == 0) {
             printf("%s\n", "cambiamos de dir");
-            // obtenemos el primer valor
             token = strtok(NULL, " ");
             printf("%s\n", token);
+            cambiarDirectorio(token)
+
         }
         
     } while (strcmp(command, "salir\n") != 0);

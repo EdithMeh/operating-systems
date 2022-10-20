@@ -11,9 +11,9 @@ int main(void) {
 	printf("Directorio actual de trabajo: \n%s\n", buffer);
 
 	printf("Cambiar directorio a: 'ejemplo/folder2'\n");
-        chdir("../f3");
-        // verificar el directorio actual;
-        getcwd(buffer, sizeof(buffer));
-        printf("Directorio actual de trabajo: \n%s\n", buffer);
+    chdir("../f3");
+    // verificar el directorio actual;
+    getcwd(buffer, sizeof(buffer));
+    printf("Directorio actual de trabajo: \n%s\n", buffer);
 	return 0;
 }

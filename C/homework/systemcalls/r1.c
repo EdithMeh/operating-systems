@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/syscall.h>
 
 int main(void) {
 	char buffer[500];
