@@ -63,7 +63,7 @@ int main()
             printf("%s\n", "cambiamos de dir");
             token = strtok(NULL, " ");
             printf("%s\n", token);
-            cambiarDirectorio(token)
+            cambiarDirectorio(token);
 
         }
         
