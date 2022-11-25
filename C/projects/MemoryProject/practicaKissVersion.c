@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #define MEMORY_SIZE 10
+#define MAX_PROCESOS 500
 
 int contadorProceso = 0;
 int totalActivos = 0;
@@ -39,9 +40,9 @@ int main() {
         memoria[MEMORY_SIZE]: vector para simular la memoria
         activos[MEMORY_SIZE]: vector para listar los ids de los procesos activos
     */
-    int opcion, posicionVacia = 0, memoria[MEMORY_SIZE], activos[MEMORY_SIZE];
+    int opcion, posicionVacia = 0, memoria[MEMORY_SIZE], activos[MAX_PROCESOS];
     // vector de tipo PROCESO para la tabla de procesos
-    PROCESO tablaProcesos[MEMORY_SIZE];
+    PROCESO tablaProcesos[MAX_PROCESOS];
     /* iniciamos la memoria marcando las posiciones del SO y las vacias
         este metodo enviara la siguiente posicion vacia
     */
@@ -137,7 +138,7 @@ int crearProceso(int memoria[], int posicionVacia, PROCESO tablaProcesos[], int 
     proceso.estado = ACTIVO;
     proceso.direccion = posicionVacia;
     // creamos el nombre proceso
-    char nombreProceso[] = "PR", num[4];
+    char nombreProceso[7] = "PR", num[4];
     // coonvertimos el id del proceso en string
     sprintf(num, "%d", contadorProceso);
     // concatenamos el "PR" con el id del proceso

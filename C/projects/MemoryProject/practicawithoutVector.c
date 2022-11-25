@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #define MEMORY_SIZE 10
+#define MAX_PROCESOS 500
 
 int contadorProceso = 0;
 int totalActivos = 0;
@@ -38,9 +39,9 @@ int main() {
         posicionVacia: para marcar la posicion donde podemos ingresar el nuevo proceso
         activos[MEMORY_SIZE]: vector para listar los ids de los procesos activos
     */
-    int opcion, posicionVacia = desplazamientoSO, activos[MEMORY_SIZE];
+    int opcion, posicionVacia = desplazamientoSO, activos[MAX_PROCESOS];
     // vector de tipo PROCESO para la tabla de procesos
-    PROCESO tablaProcesos[MEMORY_SIZE];
+    PROCESO tablaProcesos[MAX_PROCESOS];
     /* Este metodo es llamado una semilla o "SEED", genera los numeros randomicos segun 
         la hora del procesador, sino ponemos esta semilla los numeros
         aleatorios que generaremos siempre seran los mismos
@@ -107,7 +108,7 @@ int crearProceso(int posicionVacia, PROCESO tablaProcesos[], int activos[]) {
     proceso.estado = ACTIVO;
     proceso.direccion = posicionVacia;
     // creamos el nombre proceso
-    char nombreProceso[] = "PR", num[4];
+    char nombreProceso[7] = "PR", num[4];
     // coonvertimos el id del proceso en string
     sprintf(num, "%d", contadorProceso);
     // concatenamos el "PR" con el id del proceso
